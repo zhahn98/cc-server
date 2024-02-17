@@ -1,0 +1,30 @@
+[
+  {
+    "model": "ccapi.rarity",
+    "pk": 1,
+    "fields": {
+      "label": "Common"
+    }
+  },
+  {
+    "model": "ccapi.rarity",
+    "pk": 2,
+    "fields": {
+      "label": "Uncommon"
+    }
+  },
+  {
+    "model": "ccapi.rarity",
+    "pk": 3,
+    "fields": {
+      "label": "Rare"
+    }
+  },
+  {
+    "model": "ccapi.rarity",
+    "pk": 4,
+    "fields": {
+      "label": "Ultra Rare"
+    }
+  }
+]

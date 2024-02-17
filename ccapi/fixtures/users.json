@@ -1,0 +1,16 @@
+[
+  {
+    "model": "ccapi.user",
+    "pk": 1,
+    "fields": {
+      "uid": "gui22"
+    }
+  },
+  {
+    "model": "ccapi.user",
+    "pk": 2,
+    "fields": {
+      "uid": "122xyz"
+    }
+  }
+]
