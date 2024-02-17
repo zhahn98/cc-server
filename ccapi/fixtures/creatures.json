@@ -1,0 +1,35 @@
+[
+  {
+    "model": "ccapi.creature",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "name": "Jungle Panther",
+      "lore": "Sleek and stealthy predator of the jungle.",
+      "img": "https://i.imgur.com/bvccnGyb.jpg",
+      "rarity": 3
+    }
+  },
+  {
+    "model": "ccapi.creature",
+    "pk": 2,
+    "fields": {
+      "user": 1,
+      "name": "Cave Dweller",
+      "lore": "Adapted to the darkness of underground caverns.",
+      "img": "https://i.imgur.com/HDgtxcUb.jpg",
+      "rarity": 4
+    }
+  },
+  {
+    "model": "ccapi.creature",
+    "pk": 3,
+    "fields": {
+      "user": 2,
+      "name": "Ocean Guardian",
+      "lore": "Protector of the deep sea, with scales like shimmering sapphires.",
+      "img": "https://i.imgur.com/I1Jyqj6b.jpg",
+      "rarity": 1
+    }
+  }
+]

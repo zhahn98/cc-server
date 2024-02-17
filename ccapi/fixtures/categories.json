@@ -1,0 +1,44 @@
+[
+  {
+    "model": "ccapi.category",
+    "pk": 1,
+    "fields": {
+      "label": "Jungle"
+    }
+  },
+  {
+    "model": "ccapi.category",
+    "pk": 2,
+    "fields": {
+      "label": "Ocean"
+    }
+  },
+  {
+    "model": "ccapi.category",
+    "pk": 3,
+    "fields": {
+      "label": "Volcano"
+    }
+  },
+  {
+    "model": "ccapi.category",
+    "pk": 4,
+    "fields": {
+      "label": "Cave"
+    }
+  },
+  {
+    "model": "ccapi.category",
+    "pk": 5,
+    "fields": {
+      "label": "Sky"
+    }
+  },
+  {
+    "model": "ccapi.category",
+    "pk": 6,
+    "fields": {
+      "label": "Swamp"
+    }
+  }
+]
