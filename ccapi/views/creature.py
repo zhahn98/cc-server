@@ -6,7 +6,6 @@ from rest_framework.decorators import action
 from ccapi.models import Creature, User, CreatureCategory, Category, Rarity
 
 class CreatureView(ViewSet):
-  
   def retrieve (self, request, pk):
     creature = Creature.objects.get(pk=pk)
     serializer = CreatureSerializer(creature)
@@ -23,12 +22,16 @@ class CreatureView(ViewSet):
   def create(self, request):
     user = User.objects.get(pk=request.data["userId"])
     
+    # Get associated description of corresponding Rarity ID
+    rarity_id = request.data["rarity"]
+    rarity = Rarity.objects.get(pk=rarity_id)
+    
     creature = Creature.objects.create(
       user = user,
       name = request.data["name"],
       img = request.data["imageUrl"],
       lore = request.data["lore"],
-      rarity = request.data["rarity"]
+      rarity = rarity
     )
     
     creature.save()
@@ -37,13 +40,40 @@ class CreatureView(ViewSet):
   
   def update(self, request, pk):
     creature = Creature.objects.get(pk=pk)
-    creature.name = request.data["name"],
-    creature.img = request.data["imageUrl"],
-    creature.lore = request.data["lore"],
-    creature.rarity = request.data["rarity"]
+    
+    # Get associated description of corresponding Rarity ID
+    rarity_id = request.data["rarity"]
+    rarity = Rarity.objects.get(pk=rarity_id)
+    
+    creature.name = request.data["name"]
+    creature.img = request.data["imageUrl"]
+    creature.lore = request.data["lore"]
+    creature.rarity = rarity
   
     creature.save()
     return Response(None, status=status.HTTP_200_OK)
+  
+  @action(methods=['post'], detail=True)
+  def add_category_to_creature(self, request, pk):
+      creature = Creature.objects.get(pk=pk)
+      category = Category.objects.get(id=request.data['categoryId'])
+      try:
+        CreatureCategory.objects.get(creature=creature, category=category)
+        return Response({'message: This creature already has this category.'})
+      except CreatureCategory.DoesNotExist:
+        CreatureCategory.objects.create(
+            creature=creature,
+            category=category
+        )
+        return Response(None, status=status.HTTP_200_OK)
+  
+  @action(methods=['delete'], detail=True)
+  def remove_category_from_creature(self, request, pk):
+      creature = Creature.objects.get(pk=pk)
+      creature_category = CreatureCategory.objects.get(creature=creature, category=request.data['categoryId'])
+      creature_category.delete()
+
+      return Response(None, status=status.HTTP_200_OK)
   
   def destroy(self, request, pk):
     creature = Creature.objects.get(pk=pk)
