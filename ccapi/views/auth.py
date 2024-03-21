@@ -10,13 +10,14 @@ def register_user(request):
       request -- The full HTTP request object
     '''
 
-    # Now save the user info in the wanderlensapi_user table
+    # Now save the user info in the user table
     user = User.objects.create(
         uid=request.data['uid']
     )
 
     # Return the user info to the client
     data = {
+        'id': user.id,
         'uid': user.uid
     }
     return Response(data)
