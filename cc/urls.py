@@ -28,4 +28,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('register', register_user),
     path('checkuser', check_user),
+    path('creatures/random/', CreatureView.as_view({'get': 'random_creature'}), name='random_creature'),
 ]

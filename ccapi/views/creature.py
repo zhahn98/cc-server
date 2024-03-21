@@ -4,7 +4,8 @@ from rest_framework import serializers, status
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from ccapi.models import Creature, User, CreatureCategory, Category, Rarity
-
+from django.core.exceptions import ObjectDoesNotExist
+import random
 class CreatureView(ViewSet):
   def retrieve (self, request, pk):
     creature = Creature.objects.get(pk=pk)
@@ -79,6 +80,18 @@ class CreatureView(ViewSet):
     creature = Creature.objects.get(pk=pk)
     creature.delete()
     return Response(None, status=status.HTTP_204_NO_CONTENT)
+  
+  @action(methods=['get'], detail=False)
+  def random_creature(self, request):
+        # Get all creatures
+        all_creatures = Creature.objects.all()
+        
+        # Choose a random creature from all creatures
+        random_creature = random.choice(all_creatures)
+        
+        # Serialize the random creature data
+        serializer = CreatureSerializer(random_creature)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 class CreatureCategorySerializer(serializers.ModelSerializer):
   id = serializers.ReadOnlyField(source='category.id')
